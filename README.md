@@ -5,11 +5,11 @@
 Spatial data machine learning project and data analysis.
 
 # Model machine learning
-1 Data analysis project in exoplanet kepler 
+1 Data analysis project in exoplanet kepler.
 
 2 Model machine learning classification star, galaxies, quasars.
 
-3 Model machine learning unsupervised Kepler
+3 Model machine learning unsupervised Kepler.
 
 4 Model machine learning classification in asteroid.
 
