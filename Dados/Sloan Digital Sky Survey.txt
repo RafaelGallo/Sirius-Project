@@ -1,0 +1,68 @@
+Feedback: Mukharbek Organokov organokov.m@gmail.com
+
+Contexto
+Sloan Digital Sky Survey atual versão de dados do servidor DR16 com galáxias, estrelas e quasares.
+
+Licença: Licença de atribuição Creative Commons ( CC-BY ) Mais dados aqui . Encontre mais aqui .
+
+Conteúdo
+A tabela resulta de uma consulta que une duas tabelas:
+
+"PhotoObj" que contém dados fotométricos
+"SpecObj" que contém dados espectrais.
+16 variáveis ​​(double) e 1 variável adicional (char) 'class'.
+Um objeto de classe pode ser previsto a partir das outras 16 variáveis.
+
+Descrição das variáveis:
+objid = Identificador de objeto
+ra = J2000 Ascensão Reta (banda r)
+dec = Declinação J2000 (banda r)
+u = melhor do ajuste de magnitude de deV / Exp (banda u)
+g = melhor ajuste de magnitude de deV / Exp ( g-band)
+r = melhor do ajuste de magnitude de deV / Exp (banda r)
+i = melhor de ajuste de magnitude de deV / Exp (banda i)
+z = melhor de ajuste de magnitude de deV / Exp (banda z)
+run = Run Number
+rerun = Número de
+repetição camcol =
+Campo da coluna da câmera = Número do campo
+specobjid = Classe de identificador de objeto
+= classe de objeto (objeto de galáxia, estrela ou quasar)
+redshift =
+Placa final Redshift = número da placa
+mjd = MJD da observação
+fibreid = fibreID
+
+Comentários
+Um sistema fotométrico de banda intermediária de UVGR de quatro cores (sistema de magnitude astronômica Thuan-Gunn) é discutido em [1]. O sistema fotométrico Sloan Digital Sky Survey (SDSS), um novo sistema CCD de banda larga de cinco cores (u ′ g ′ r ′ i ′ z ′) é descrito em [2]
+As variáveis ​​'run', 'rerun', 'camcol' e 'field' são características que descrevem um campo dentro de uma imagem obtida pelo SDSS. Um campo é basicamente uma parte da imagem inteira correspondendo a 2.048 por 1.489 pixels. Um campo pode ser identificado por: - número da corrida, que identifica a varredura específica, - a coluna da câmera, ou "camcol", um número de 1 a 6, identificando a linha de varredura dentro da corrida e o número do campo. O número do campo normalmente começa em 11 (após um tempo de rampup inicial) e pode chegar a 800 para execuções particularmente longas. - Um número adicional, reexecutar, especifica como a imagem foi processada.
+A variável 'classe' identifica um objeto como uma galáxia (GALAXY), estrela (STAR) ou quasar (QSO).
+Referências:
+[1] Thuan & Gunn (1976, PASP, 88,543)
+[2] Fukugita, M. et al, Astronomical J. v.111, p.1748
+
+Servidor de dados
+Os dados podem ser obtidos usando SkyServer SQL Search com o comando abaixo:
+- Esta consulta faz um JOIN de tabela entre as imagens (PhotoObj) e espectros
+- (SpecObj) tabelas e inclui as colunas necessárias no SELECT para fazer
+o upload - os resultados para o SAS (Science Archive Server) para recuperação de arquivos FITS.
+SELECIONE TOP 100000
+p.objid, p.ra, p.dec, pu, pg, pr, pi, pz,
+p.run, p.rerun, p.camcol, p.field,
+s.specobjid, s.class, sz como redshift,
+s.plate, s.mjd, s.fiberid
+FROM PhotoObj AS p
+JOIN SpecObj AS s ON s.bestobjid = p.objid
+ONDE
+pu ENTRE 0 E 19.6
+E g ENTRE 0 E 20
+
+Aprenda como fazer . Alguns exemplos . Tutorial SQL completo .
+
+Ou execute uma consulta complicada e com uso intensivo da CPU dos dados do catálogo SDSS usando CasJobs , interface baseada em SQL para o CAS.
+
+Reconhecimentos
+Colaboração SDSS .
+
+Inspiração
+O Sloan Digital Sky Survey criou os mapas tridimensionais mais detalhados do Universo já feitos, com imagens multicoloridas profundas de um terço do céu e espectros de mais de três milhões de objetos astronômicos. Permite conhecer e explorar todas as fases e pesquisas - passadas, presentes e futuras - do SDSS.
